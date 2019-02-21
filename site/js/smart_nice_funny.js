@@ -260,8 +260,14 @@ function getRandomPlayer() {
 }
 
 function fetchPlayers() {
-  var year = new Date().getFullYear();
-  var nextYear = new Date(new Date().setFullYear(new Date().getFullYear() + 1)).getFullYear().toString().substr(-2);
+  var date = new Date();
+  var year = 2019;
+  var month = 1;
+  var nextYear = (year + 1).toString().substr(-2);
+  if (month >= 0 && month <= 9) {
+	  year = year - 1;
+	  nextYear = nextYear - 1;
+  }
   var url = 'https://stats.nba.com/stats/commonallplayers?LeagueID=00&IsOnlyCurrentSeason=1&Season=' + year + '-' + nextYear;
   return $.ajax({
     url: url,
